@@ -1,38 +1,172 @@
-.App {
-  text-align: center;
+/* geral */
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #e5e5e5;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* -- header -- */
+header {
+  background: #6759c0;
+  color: white;
+  font-weight: 400;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 15px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header * {
+  margin-left: 18px;
+}
+
+header h1 {
+  font-family: "Righteous", cursive;
+  font-size: 44px;
+}
+
+/* -- produtos -- */
+main {
+  margin: 100px 0;
+}
+
+section {
+  margin-bottom: 27px;
+}
+
+.container-produtos {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: auto;
+  margin-top: 17px;
+}
+
+section h1 {
+  font-family: "Righteous", cursive;
+  font-size: 26px;
+  margin-left: 16px;
+}
+
+.containerCards {
+  display: flex;
+}
+
+.produto {
+  width: 170px;
+  height: 220px;
+  background-color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
+  color: black;
+  font-size: 16px;
+  border-radius: 9px;
+  box-shadow: 0px 0px 10px -4px #00000040;
+  margin-top: 17px;
+  margin-left: 16px;
+  margin-bottom: 20px;
+  padding: 10px;
+  position: relative;
+  border: 4px solid #fff;
+}
+
+.produto.selecionado {
+  border: 4px solid #29ab42;
+}
+
+.produto.selecionado .check {
+  display: block;
+}
+
+.check {
+  position: absolute;
+  display: none;
+  right: 10px;
+  bottom: 17px;
+  font-size: 20px;
+  color: #29ab42;
+}
+
+.produto * {
+  margin-bottom: 5px;
+}
+
+.produto strong {
+  font-weight: 700;
+  font-size: 16px;
+  color: #333;
+}
+
+.produto small {
+  font-weight: 300;
+  font-size: 15px;
+  color: #a6a6a6;
+}
+
+.produto p {
+  font-weight: 400;
+  font-size: 16px;
+  color: #000;
+}
+
+.produto .img-div {
+  width: 100%;
+  height: 80px;
+  border-radius: 5px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* -- confirmacao pedido -- */
+.confirmacao {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  padding: 19px;
+  font-size: 22px;
 }
 
-.App-link {
-  color: #61dafb;
+/* -- footer -- */
+footer {
+  width: 100%;
+  height: 92px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer button {
+  font-size: 20px;
+  font-weight: 400;
+  background-color: #cbcbcb;
+  color: #fff;
+  text-align: center;
+  border-radius: 50px;
+  border: none;
+  width: 364px;
+  height: 61px;
+}
+
+.liberado {
+  background-color: #29ab42;
 }
