@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function CardProduct(props) {
   const [selecionado, setSelecionado] = useState(false);
 
   function selecionaCard() {
-    setSelecionado(!selecionado);
+    props.selecionarItem(props.tipoProduto, props.nomePrato);
+    console.log(selecionado);
   }
+
+  useEffect(() => {
+    const checarSeProdutoSelecionado =
+      props.produtosSelecionados[props.tipoProduto] === props.nomePrato;
+    console.log(checarSeProdutoSelecionado);
+    setSelecionado(checarSeProdutoSelecionado);
+  }, [props.produtosSelecionados[props.tipoProduto]]);
 
   return (
     <div

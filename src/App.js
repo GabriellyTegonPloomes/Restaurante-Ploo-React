@@ -1,62 +1,19 @@
 import "./reset.css";
 import "./App.css";
-
+import { useState } from "react";
 import { Footer } from "./compents/Footer";
 import { Header } from "./compents/Header";
 import { CardProduct } from "./compents/Card";
 
 function App() {
-  let produtosSelecionados = [];
+  const [produtosSelecionados, setProdutosSelecionados] = useState({
+    prato: "",
+    bebida: "",
+    sobremesa: "",
+  });
 
-  function selecionarPrato(div, tipo) {
-    removePratoSelecionado(tipo);
-    // div.classList.add("selecionado");
-    console.log(div);
-    produtosSelecionados.push(tipo);
-    liberarBotao();
-  }
-
-  function removePratoSelecionado(tipo) {
-    const elementoSelecionado = document.querySelector(`.${tipo} .selecionado`);
-    if (elementoSelecionado) {
-      // elementoSelecionado.classList.remove("selecionado");
-      produtosSelecionados = produtosSelecionados.filter(
-        (item) => item !== tipo
-      );
-    }
-  }
-
-  function liberarBotao() {
-    if (produtosSelecionados.length === 3) {
-      const botaoFecharPedido = document.querySelector("footer button");
-      // botaoFecharPedido.classList.add("liberado");
-      botaoFecharPedido.disabled = false;
-      botaoFecharPedido.innerHTML = "Fechar pedido";
-    }
-  }
-
-  function clickbotao() {
-    console.log(produtosSelecionados);
-
-    let pratoEscolhido, bebidaEscolhida, sobremesaEscolhida;
-
-    produtosSelecionados.forEach((tipo) => {
-      let elementoSelecionado = document.querySelector(
-        ` .${tipo} .selecionado strong`
-      ).innerText;
-
-      const tipos = {
-        prato: () => (pratoEscolhido = elementoSelecionado),
-        bebida: () => (bebidaEscolhida = elementoSelecionado),
-        sobremesa: () => (sobremesaEscolhida = elementoSelecionado),
-      };
-
-      tipos[tipo]();
-    });
-
-    alert(
-      `Prato escolhido: ${pratoEscolhido} \nBebida escolhida: ${bebidaEscolhida} \nSobremesa escolhida: ${sobremesaEscolhida}`
-    );
+  function selecionarItem(tipo, nomeDoItem) {
+    setProdutosSelecionados({ ...produtosSelecionados, [tipo]: nomeDoItem });
   }
 
   return (
@@ -72,7 +29,8 @@ function App() {
               preco="R$ 49,90"
               tipoProduto="prato"
               imagem="https://cdn.outback.com.br/wp-data/wp-content/uploads/2018/10/42_Chicken-on-the-Barbie_1.jpg"
-              selecionarPrato={selecionarPrato()}
+              selecionarItem={selecionarItem}
+              produtosSelecionados={produtosSelecionados}
             />
             <CardProduct
               nomePrato="Bife com fritas"
@@ -80,6 +38,8 @@ function App() {
               preco="R$ 75,90"
               tipoProduto="prato"
               imagem="https://cdn.outback.com.br/wp-data/wp-content/uploads/2024/06/Outback-Homestead-Steak-675x480.webp"
+              selecionarItem={selecionarItem}
+              produtosSelecionados={produtosSelecionados}
             />
             <CardProduct
               nomePrato="Macarrão"
@@ -87,6 +47,8 @@ function App() {
               preco="R$ 52,90"
               tipoProduto="prato"
               imagem="https://cdn.outback.com.br/wp-data/wp-content/uploads/2024/06/Outback-Mate_s-Fettuccine-675x480.webp"
+              selecionarItem={selecionarItem}
+              produtosSelecionados={produtosSelecionados}
             />
           </div>
         </section>
@@ -100,6 +62,8 @@ function App() {
               preco="R$ 4,90"
               tipoProduto="bebida"
               imagem="https://crsupermercados.com.br/cdn/shop/files/coca_350ml_800x.png?v=1700754095"
+              selecionarItem={selecionarItem}
+              produtosSelecionados={produtosSelecionados}
             />
             <CardProduct
               nomePrato="Fanta"
@@ -107,6 +71,8 @@ function App() {
               preco="R$ 5,90"
               tipoProduto="bebida"
               imagem="https://www.brasileuquero.com/cdn/shop/products/7891991008877_1080x.png?v=1632146161"
+              selecionarItem={selecionarItem}
+              produtosSelecionados={produtosSelecionados}
             />
             <CardProduct
               nomePrato="Guaraná"
@@ -114,6 +80,8 @@ function App() {
               preco="R$ 6,90"
               tipoProduto="bebida"
               imagem="https://www.brasileuquero.com/cdn/shop/products/7891991008877_1080x.png?v=1632146161"
+              selecionarItem={selecionarItem}
+              produtosSelecionados={produtosSelecionados}
             />
           </div>
         </section>
@@ -127,6 +95,8 @@ function App() {
               preco="R$ 25,00"
               tipoProduto="sobremesa"
               imagem="https://cdn.outback.com.br/wp-data/wp-content/uploads/2020/10/Smores-1-200x200.png"
+              selecionarItem={selecionarItem}
+              produtosSelecionados={produtosSelecionados}
             />
             <CardProduct
               nomePrato="Milkshake"
@@ -134,6 +104,8 @@ function App() {
               preco="R$ 21,90"
               tipoProduto="sobremesa"
               imagem="https://cdn.outback.com.br/wp-data/wp-content/uploads/2018/10/Milkshake.jpg"
+              selecionarItem={selecionarItem}
+              produtosSelecionados={produtosSelecionados}
             />
             <CardProduct
               nomePrato="Brownie com sorvete"
@@ -141,12 +113,14 @@ function App() {
               preco="R$ 32,90"
               tipoProduto="sobremesa"
               imagem="https://cdn.outback.com.br/wp-data/wp-content/uploads/2018/10/Chocolate-Thunder-From-Down-Under_305x342.png"
+              selecionarItem={selecionarItem}
+              produtosSelecionados={produtosSelecionados}
             />
           </div>
         </section>
       </main>
 
-      <Footer />
+      <Footer produtosSelecionados={produtosSelecionados} />
     </>
   );
 }
